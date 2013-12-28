@@ -133,9 +133,9 @@
             var gcode = cf.gcode.group();
             var all = cf.groupAll();
 
-            var sectorByTotal = cf.sector.group().reduceSum(function (d) { return d.total; });
-            var organisationByTotal = cf.organisation.group().reduceSum(function (d) { return d.total; });
-            var statusByTotal = cf.status.group().reduceSum(function (d) { return d.total; });
+            var sectorByTotal = cf.sector.group().reduceSum(function (d) { return d.Total; });
+            var organisationByTotal = cf.organisation.group().reduceSum(function (d) { return d.Total; });
+            var statusByTotal = cf.status.group().reduceSum(function (d) { return d.Total; });
 
             var sectorgroup = cf.sector.group().reduce(
                 /* callback for when data is added to the current filter results */
@@ -222,7 +222,7 @@
              /* 3W data are sorted per sector and color are allocated to sectors as per standard code in rrp6 */
             sector_chart.width(180).height(180)
                 .dimension(cf.sector)
-                .group(sector)
+                .group(sectorByTotal)
                 .innerRadius(10)
                 .colors(['#c00000', /* cash */
                         '#31859c', /* education */
@@ -240,7 +240,7 @@
             status_chart.width(220).height(180)
                 .dimension(cf.status)
                 .group(statusByTotal)
-                .valueAccessor(function(d) {return d.status;});
+                .valueAccessor(function(d) {return d.value;});
                 /*.elasticX(true)
                 .x(d3.scale.linear().domain(["Planned","Ongoing","Completed"]))
                 .colors(['#2ca25f',
@@ -254,7 +254,7 @@
 
             org_chart.width(320).height(300)
                 .dimension(cf.organisation)
-                .group(organisation)
+                .group(organisationByTotal)
                 .elasticX(true)
                 .data(function(group) {
                     return group.top(10);
