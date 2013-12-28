@@ -23,3 +23,20 @@
 	padding: 5px;
 	margin: 5px;
 }
+
+.socialmedia {
+  position: absolute;
+  top: 5px;
+  right: 60px;
+z-index: 99999999;
+
+}
+
+.socialmedia img {
+  padding: 2px;
+}
+
+.socialmedia img:hover {
+  opacity: 0.7;
+}
+
