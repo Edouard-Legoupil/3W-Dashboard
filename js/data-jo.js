@@ -1,9 +1,11 @@
  /* All admin name must be in CAP */
 
 var rcode2reg = {
-    '1':'NORTH',
-    '2':'CENTRAL',
-    '3':'SOUTH'}
+    '1':'NORTH REGION',
+    '2':'CENTRAL REGION',
+    '3':'SOUTH REGION',
+    '4':'JORDAN COUNTRY WIDE',
+    '5':'ALL CAMPS IN JORDAN'}
 
 var gcode2gov = {
     '1704':'KARAK',
@@ -14,7 +16,9 @@ var gcode2gov = {
     '1712':'ZARQA',
     '1709':'MAAN',
     '1701':'AJLOUN',
-    '1702':'ABALQA',
+    '1702':'BALQA',
     '1707':'IRBID',
     '1711':'MAFRAQ',
-    '1708':'JARASH'}
+    '1708':'JARASH',
+    '1':'JORDAN COUNTRY WIDE',
+    '2':'ALL CAMPS IN JORDAN'}
