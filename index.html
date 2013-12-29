@@ -39,7 +39,7 @@
                 <table>
                   <tr>
                     <td valign="middle" ><a href="http://www.facebook.com/sharer.php?u=http://data.unhcr.org/jordan/rrp6" target="_blank"><img src="images/Facebook.png" style="height: 25px; width: 25px"/></a></td>
-                    <td valign="middle"><a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fdata.unhcr.org/jordan/rrp6&amp;media=http%3A%2F%2Fdata.unhcr.org/jordan/rrp6/thumbnail.jpg" target="_blank" data-pin-do="buttonBookmark" ><img src="images/Pinterest.png" style="height: 28px; width: 28px"/></a></td>
+                    <td valign="middle"><a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fdata.unhcr.org/jordan/rrp6&amp;media=http%3A%2F%2Fdata.unhcr.org/jordan/rrp6/thumbnail.png" target="_blank" data-pin-do="buttonBookmark" ><img src="images/Pinterest.png" style="height: 28px; width: 28px"/></a></td>
                     <td valign="middle"><a href="https://twitter.com/intent/tweet?url=http://data.unhcr.org/jordan/rrp6&text=%23Jordan%20@Refugees" target="_blank"><img src="images/Twitter.png" style="height: 25px; width: 25px"/></a></td>
                     <td valign="middle"><a href="https://plus.google.com/share?&hl=en&url=http://data.unhcr.org/jordan/rrp6" target="_blank"><img src="images/Google.png" style="height: 25px; width: 25px"/></a></td>
                 </tr>
@@ -85,11 +85,12 @@
       </div>
 
     </div>
-    <a href="https://github.com/simonbjohnson/3W-Dashboard/">Credit</a>
+    <small></samll><a href="https://github.com/edouard-legoupil/3W-Dashboard/">Credit</a></small>
 
     <script type="text/javascript" src="js/d3.js"></script>
     <script type="text/javascript" src="js/crossfilter.js"></script>
     <script type="text/javascript" src="js/dc.js"></script>
+    <script type="text/javascript" src="js/d3.tip.min.js"></script>
 
     <script>
 
@@ -112,7 +113,7 @@
         var org_chart = dc.rowChart("#orgs");
         var map2_chart = dc.geoChoroplethChart("#map2");
 
-        d3.csv("data/3W_Data-jo.csv", function(csv_data){
+        d3.csv("data/3W_Data-jo1.csv", function(csv_data){
 
             var numberFormat = d3.format(",f");
 
@@ -124,9 +125,6 @@
             cf.rcode = cf.dimension(function(d) { return d.RegionCODE; });
             cf.gcode = cf.dimension(function(d) { return d.GovCODE; });
             cf.total = cf.dimension(function(d) { return d.Total; });
-            cf.life = cf.dimension(function(d) { return d.Budget_life; });
-            cf.prevent = cf.dimension(function(d) { return d.Budget_prevent; });
-            cf.resilient = cf.dimension(function(d) { return d.Budget_resilient; });
 
             var organisation = cf.organisation.group();
             var sector = cf.sector.group();
@@ -139,84 +137,10 @@
             var organisationByTotal = cf.organisation.group().reduceSum(function (d) { return d.Total; });
             var statusByTotal = cf.status.group().reduceSum(function (d) { return d.Total; });
 
-            var sectorgroup = cf.sector.group().reduce(
-                /* callback for when data is added to the current filter results */
-                function (p, v) {
-                    ++p.count;
-                    p.total += v.Total;
-                    p.life += v.Budget_life;
-                    p.prevent += v.Budget_prevent;
-                    p.resilient += v.Budget_resilient;
-                    return p;
-                },
-                /* callback for when data is removed from the current filter results */
-                function (p, v) {
-                    --p.count;
-                    p.total -= v.Total;
-                    p.life -= v.Budget_life;
-                    p.prevent -= v.Budget_prevent;
-                    p.resilient -= v.Budget_resilient;
-                    return p;
-                },
-                /* initialize p */
-                function () {
-                    return {count: 0, total: 0, life: 0, prevent: 0, resilient: 0};
-                }
-            );
 
-            var organisationgroup = cf.organisation.group().reduce(
-                /* callback for when data is added to the current filter results */
-                function (p, v) {
-                    ++p.count;
-                    p.total += v.Total;
-                    p.life += v.Budget_life;
-                    p.prevent += v.Budget_prevent;
-                    p.resilient += v.Budget_resilient;
-                    return p;
-                },
-                /* callback for when data is removed from the current filter results */
-                function (p, v) {
-                    --p.count;
-                    p.total -= v.Total;
-                    p.life -= v.Budget_life;
-                    p.prevent -= v.Budget_prevent;
-                    p.resilient -= v.Budget_resilient;
-                    return p;
-                },
-                /* initialize p */
-                function () {
-                    return {count: 0, total: 0, life: 0, prevent: 0, resilient: 0};
-                }
-            );
-
-            var statusgroup = cf.organisation.group().reduce(
-                /* callback for when data is added to the current filter results */
-                function (p, v) {
-                    ++p.count;
-                    p.total += v.Total;
-                    p.life += v.Budget_life;
-                    p.prevent += v.Budget_prevent;
-                    p.resilient += v.Budget_resilient;
-                    return p;
-                },
-                /* callback for when data is removed from the current filter results */
-                function (p, v) {
-                    --p.count;
-                    p.total -= v.Total;
-                    p.life -= v.Budget_life;
-                    p.prevent -= v.Budget_prevent;
-                    p.resilient -= v.Budget_resilient;
-                    return p;
-                },
-                /* initialize p */
-                function () {
-                    return {count: 0, total: 0, life: 0, prevent: 0, resilient: 0};
-                }
-            );
 
 
             console.log(all.value());
-            console.log(organisationgroup.top(5).value);
             console.log(statusByTotal.top(10).value);
 
 
@@ -239,7 +163,23 @@
                 .renderLabel(true)
                 .colorAccessor(function(d, i){return i%8;});
 
+            // tooltips for row chart
+            var rowTip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .offset([-10, 0])
+                  .html(function (d) { return "<span style='color: #f0027f'>" +  d.key + "</span> : "  + numberFormat(d.value) + " USD"; });
 
+            // tooltips for pie chart
+            var pieTip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .offset([-10, 0])
+                  .html(function (d) { return "<span style='color: #f0027f'>" +  d.data.key + "</span> : "  + numberFormat(d.value) + " USD"; });
+
+            // tooltips for bar chart
+            var barTip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .offset([-10, 0])
+                  .html(function (d) { return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + numberFormat(d.y) + " USD";});
 
 
 
@@ -323,6 +263,27 @@
                             $('#loading').hide();
                             $('#dashboard').show();
                             dc.renderAll();
+                            
+                            /* Customised infobox */
+                            d3.selectAll("g.row").call(rowTip);
+                            d3.selectAll("g.row").on('mouseover', rowTip.show)
+                                .on('mouseout', rowTip.hide);
+
+                            d3.selectAll(".pie-slice").call(pieTip);
+                            d3.selectAll(".pie-slice").on('mouseover', pieTip.show)
+                                .on('mouseout', pieTip.hide);
+
+                            d3.selectAll("rect.bar").call(barTip);
+                            d3.selectAll("rect.bar").on('mouseover', barTip.show)
+                                .on('mouseout', barTip.hide); 
+                                
+                            d3.selectAll("rect.stack1").call(barTip);
+                            d3.selectAll("rect.stack1").on('mouseover', barTip.show)
+                                .on('mouseout', barTip.hide); 
+                                
+                            d3.selectAll("rect.stack2").call(barTip);
+                            d3.selectAll("rect.stack2").on('mouseover', barTip.show)
+                                .on('mouseout', barTip.hide); 
 
                     });
                 });
@@ -331,5 +292,17 @@
 
 
     <script src="js/bootstrap.min.js"></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://data.unhcr.org/piwik/" : "http://data.unhcr.org/piwik/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 21);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://data.unhcr.org/piwik/piwik.php?idsite=21" style="border:0" alt="" /></p></noscript>
+    <!-- End Piwik Tracking Code -->
   </body>
 </html>

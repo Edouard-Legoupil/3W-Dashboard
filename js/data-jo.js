@@ -4,7 +4,7 @@ var rcode2reg = {
     '1':'NORTH REGION',
     '2':'CENTRAL REGION',
     '3':'SOUTH REGION',
-    '4':'JORDAN COUNTRY WIDE',
+    '4':'No Breakdown per Governorate',
     '5':'ALL CAMPS IN JORDAN'}
 
 var gcode2gov = {
@@ -20,5 +20,5 @@ var gcode2gov = {
     '1707':'IRBID',
     '1711':'MAFRAQ',
     '1708':'JARASH',
-    '1':'JORDAN COUNTRY WIDE',
+    '1':'No Breakdown per Governorate',
     '2':'ALL CAMPS IN JORDAN'}
