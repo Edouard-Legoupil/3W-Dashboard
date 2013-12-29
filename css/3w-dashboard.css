@@ -71,3 +71,8 @@ z-index: 99999999;
   left: 0;
 }
 
+.dc-chart g.row text {
+    fill: #523530;
+    font-size: 12px;
+    cursor: pointer;
+}
