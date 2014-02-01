@@ -60,12 +60,12 @@
 
 
     <div class="row">
-        <div id="count-info" class="col-xs-9" data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position='right'>
-          <strong><span class="filter-count "></span></strong> selected out of <span class="total-count "></span> records
+        <div class="col-md-8"data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position='right'> 
+            <div id="count-info" ><strong><span class="filter-count "></span></strong> selected out of <span class="total-count "></span> records</div>        
+            <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> 
         </div>
-        <div class="col-xs-3">         
-          <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Tutorial</a>
-          <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> 
+        <div class="col-md-4"> 
+            <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Tutorial</a>
         </div>
     </div>
     <div class="row">
