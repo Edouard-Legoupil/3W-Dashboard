@@ -20,7 +20,17 @@
     <link rel="stylesheet" type="text/css" href="css/dc.css"/>
     <link rel="stylesheet" type="text/css" href="css/3w-dashboard.css"/>
     
-    <script src="js/jquery.js"></script>
+    
+    
+    <!-- <script src="js/jquery.js"></script>
+    Jquery version compatible with ba-bq plugin below 
+    <script>jQuery.noConflict();</script>-->
+    
+    <script src="js/jquery-1.6.2.min.js"></script>
+    
+    <!-- Jquery plugin to encode URL -->
+    <script src="js/jquery.ba-bbq.min.js"></script> 
+    
     <!-- additional JS function needed -->
     <script src="js/underscore-min.js"></script>
     
@@ -444,7 +454,7 @@
                             d3.selectAll(".pie-slice").on('mouseover', pieTip.show)
                                 .on('mouseout', pieTip.hide);
 
-                 ///////////ad the hashed encoded state filter////////////////////////
+                 ///////////add the hashed encoded state filter////////////////////////
 
                             window.addEventListener("popstate", function(e) {
                                 vis_state = e.state || $.deparam(location.hash.substr(7), true).state ||
@@ -471,7 +481,9 @@
     </script>
 
 
+   <!--
     <script src="js/bootstrap.min.js"></script>
+    -->
     <!-- Piwik
     <script type="text/javascript">
     var pkBaseURL = (("https:" == document.location.protocol) ? "https://data.unhcr.org/piwik/" : "http://data.unhcr.org/piwik/");
