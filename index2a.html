@@ -115,7 +115,8 @@
 
     <script>
 
-        // state serialization
+        // state serialization: thanks @ https://github.com/dc-js/dc.js/issues/490
+        // code concept from https://github.com/cscheid/mlb-hall-of-fame-voting
 
         var chart;
         var charts = [];
@@ -127,6 +128,14 @@
 
         var stats = ["sector", "status", "orgs", "map", "map2"
             ];
+            
+        var hist_title = {
+            "sector": "sector",
+             "status": "status",
+             "orgs": "orgs",
+             "map": "map",
+             "map2": "map2"
+        };
 
         function stats_name(d)
         {
