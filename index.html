@@ -4,44 +4,31 @@
 <meta charset='utf-8'>
 <meta content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0' name='viewport'>
 <meta name="author" content="Edouard Legoupil">
-
 <meta property="og:title" content="2014 Refugee Response in Jordan"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="http://data.unhcr.org/jordan/rrp6"/>
 <meta property="og:image" content="http://data.unhcr.org/jordan/rrp6/thumbnail.jpg"/>
 <meta property="og:site_name" content="2014 Refugee Response in Jordan"/>
 <meta property="og:description" content="2014 Refugee Response in Jordan"/>
-
-
     <title>2014 Refugee Response Plan in Jordan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/dc.css"/>
     <link rel="stylesheet" type="text/css" href="css/3w-dashboard.css"/>
-    
     <!-- Add IntroJs styles and JS -->
     <link rel="stylesheet" type="text/css" href="css/introjs.min.css" >
-    
     <script type="text/javascript" src="js/intro.min.js"></script>
-    
-
-    
-    <script src="js/jquery.js"></script>
-    
+    <script src="js/jquery-1.6.2.min.js"></script>
     <!-- map the data to the GeoJSON object -->
     <script src="js/data-jo.js"></script>
-    
     <link href="http://www.unhcr.org/favicon.ico" rel="icon" type="image/x-icon">
-    
   </head>
 
   <body>
-
     <div class ="col-sm-4 col-md-offset4" id="loading">
         <h1>Patience: Loading the data... (~a few MB)</h1><small>This webpage does not work on IE8 or older... Upgrade your browser if needed</a></a></small>
     </div>
-
     <div class="container" id="dashboard">
         <h1><strong>2014 Refugee Response Plan in Jordan</strong></h1>
         <div class="col-xs-12">Explore <a href="http://www.unhcr.org/52b170e49.html" target="_blank" >2014 Interagency Response</a> financial requirement (in USD)
@@ -57,50 +44,41 @@
                 </tr>
                 </table>
            </div>
-
-
-    <div class="row">
-        <div class="col-md-8"data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position='right'> 
-            <div id="count-info" ><strong><span class="filter-count "></span></strong> selected out of <span class="total-count "></span> records</div>        
-            <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a> 
-        </div>
-        <div class="col-md-4"> 
-            <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Tutorial</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-          <div class="row">
-            <div id="sector" class="col-xs-6" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position='right'>
-              <h4>Humanitarian Sectors</h4>
+        <div class="row">
+            <div class="col-md-8"data-step="5" data-intro="Here's the number of activities you filtered. Use the reset button to delete all your filters" data-position='right'>
+                <div id="count-info" ><strong><span class="filter-count "></span></strong> selected out of <span class="total-count "></span> records</div>
+                <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
             </div>
-          </div>
-          <div class="row">
-            <div id="status" class="col-xs-6" data-step="2" data-intro="Click on this row chart to filter by prioritisation level." data-position='right'>
-              <h4>Prioritisation Level</h4>
+            <div class="col-md-4">
+                <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Tutorial</a>
             </div>
-          </div>
         </div>
-
-        <div id="orgs" class="col-md-4" data-step="3" data-intro="Click on this row chart to filter by partner." data-position='right'>
-              <h4>Highest Appealing Partners</h4>
-              <div class="col-xs-12">By financial requirement</div>
+        <div class="row">
+            <div class="col-md-4">
+              <div class="row">
+                <div id="sector" class="col-xs-6" data-step="1" data-intro="Click on this pie chart to filter by sector." data-position='right'>
+                  <h4>Humanitarian Sectors</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div id="status" class="col-xs-6" data-step="2" data-intro="Click on this row chart to filter by prioritisation level." data-position='right'>
+                  <h4>Prioritisation Level</h4>
+                </div>
+              </div>
+            </div>
+            <div id="orgs" class="col-md-4" data-step="3" data-intro="Click on this row chart to filter by partner." data-position='right'>
+                  <h4>Highest Appealing Partners</h4>
+                  <div class="col-xs-12">By financial requirement</div>
+            </div>
+            <div id="map" class="col-md-4" >
+              <h4>Geographic filter:<a href="javascript:governoratesMapShow();">Governorates</a> -or- Regions</h4>
+              <p><small>Some activities are country-wide or for camps only.</small></p>
+            </div>
+            <div id="map2" class="col-md-4" data-step="4" data-intro="Click anywhere on the map to filter the results. The camp icon filters activities for camp only and the small jordan map filters country-wide activities" data-position='left'>
+              <h4>Geographic filter: Governorates -or- <a href="javascript:regionsMapShow();">Regions</a></h4>
+              <p><small>Some activities are country-wide or for camps only.</small></p>
+            </div>
         </div>
-
-        <div id="map" class="col-md-4" >
-          <h4>Geographic filter:<a href="javascript:governoratesMapShow();">Governorates</a> -or- Regions</h4>
-          <p><small>Some activities are country-wide or for camps only.</small></p>
-        </div>
-        <div id="map2" class="col-md-4" data-step="4" data-intro="Click anywhere on the map to filter the results. The camp icon filters activities for camp only and the small jordan map filters country-wide activities" data-position='left'>
-          <h4>Geographic filter: Governorates -or- <a href="javascript:regionsMapShow();">Regions</a></h4>
-          <p><small>Some activities are country-wide or for camps only.</small></p>
-        </div>
-    </div>
-
-
-
-
-
     </div>
     <small></samll><a href="https://github.com/edouard-legoupil/3W-Dashboard/" target="_blank" >Credit</a></small>
 
@@ -110,12 +88,6 @@
     <script type="text/javascript" src="js/d3.tip.min.js"></script>
 
     <script>
-
-
-
-
-
-
         function regionsMapShow(){
             $('#map2').hide();
             $('#map').show();
@@ -159,7 +131,44 @@
             var organisationByTotal = cf.organisation.group().reduceSum(function (d) { return d.Total; });
             var statusByTotal = cf.status.group().reduceSum(function (d) { return d.Total; });
 
-    // tooltips for row chart
+            // Implement bookmarking chart filters status
+            // Serializing filters values in URL
+            function getFiltersValues() {
+                var filters = [
+                    { name: 'sector', value: sector_chart.filters()},
+                    { name: 'status', value: status_chart.filters()},
+                    { name: 'org', value: org_chart.filters()},
+                    { name: 'map', value: map2_chart.filters()}];
+
+                var recursiveEncoded = $.param( filters );
+                location.hash = recursiveEncoded;
+            }
+            // Init chart filters
+            function initFilters() {
+                // Get hash values
+                var parseHash = /^#sector=([A-Za-z0-9,_\-\/\s]*)&status=([A-Za-z0-9,_\-\/\s]*)&org=([A-Za-z0-9,_\-\/\s]*)&map=([A-Za-z0-9,_\-\/\s]*)$/;
+                var parsed = parseHash.exec(decodeURIComponent(location.hash));
+                function filter(chart, rank) {  // for instance chart = sector_chart and rank in URL hash = 1
+                    // sector chart
+                    if (parsed[rank] == "") {
+                        chart.filter(null);
+                    }
+                    else {
+                        var filterValues = parsed[rank].split(",");
+                        for (var i = 0; i < filterValues.length; i++ ) {
+                            chart.filter(filterValues[i]);
+                        }
+                    }
+                }
+                if (parsed) {
+                    filter(sector_chart, 1);
+                    filter(status_chart, 2);
+                    filter(org_chart, 3);
+                    filter(map2_chart, 4);
+                }
+            }
+
+            // tooltips for row chart
             var rowTip = d3.tip()
                   .attr('class', 'd3-tip')
                   .offset([-10, 0])
@@ -176,8 +185,6 @@
                   .attr('class', 'd3-tip')
                   .offset([-10, 0])
                   .html(function (d) { return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + numberFormat(d.y) + " USD";});
-
-//  console.log(all.value());
 
 
              /* 3W data are sorted per sector and color are allocated to sectors as per standard code in rrp6 */
@@ -196,7 +203,8 @@
                         ])
                 .colorDomain([0,7])
                 .renderLabel(true)
-                .colorAccessor(function(d, i){return i%8;});
+                .colorAccessor(function(d, i){return i%8;})
+                .on("filtered", getFiltersValues);
 
 
 
@@ -204,6 +212,7 @@
                 .dimension(cf.status)
                 .group(statusByTotal)
                 .elasticX(true)
+                .on("filtered", getFiltersValues)
                 .xAxis().ticks(4).tickFormat(d3.format("s"));
 
 
@@ -211,6 +220,7 @@
                 .dimension(cf.organisation)
                 .group(organisationByTotal)
                 .elasticX(true)
+                .on("filtered", getFiltersValues)
                 .data(function(group) {
                     return group.top(20);
                 })
@@ -219,10 +229,7 @@
                 .colorAccessor(function(d, i){return 1;})
                 .xAxis().ticks(4).tickFormat(d3.format("s"));
 
-
-
             dc.dataCount("#count-info")
-
             .dimension(cf)
             .group(all);
 
@@ -234,6 +241,7 @@
                     .group(rcode)
                     .colors(['#AAAAAA', '#CB181D'])
                     .colorDomain([0, 1])
+                    .on("filtered", getFiltersValues)
                     .colorAccessor(function (d) {
                         if(d>0){
                             return 1;
@@ -256,6 +264,7 @@
                             .group(gcode)
                             .colors(['#AAAAAA', '#CB181D'])
                             .colorDomain([0, 1])
+                            .on("filtered", getFiltersValues)
                             .colorAccessor(function (d) {
                                 if(d>0){
                                     return 1;
@@ -283,21 +292,10 @@
                             d3.selectAll(".pie-slice").call(pieTip);
                             d3.selectAll(".pie-slice").on('mouseover', pieTip.show)
                                 .on('mouseout', pieTip.hide);
-                                
-                                
-
-
-
-
-
                     });
                 });
         });
-        
-        
     </script>
-
-
     <script src="js/bootstrap.min.js"></script>
     <!-- Piwik-->
     <script type="text/javascript">
