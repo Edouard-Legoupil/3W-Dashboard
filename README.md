@@ -20,3 +20,5 @@ https://github.com/NickQiZhu/dc.js/wiki
 
 D3 Tip is from here: https://github.com/saraquigley/uc-trends/
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Edouard-Legoupil/3w-dashboard/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
